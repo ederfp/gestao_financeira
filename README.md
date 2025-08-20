@@ -265,3 +265,5 @@ Certifique-se de ter o Node.js e o npm instalados em sua máquina.
 O servidor estará disponível em `http://localhost:3000`.
 
 ---
+
+<img width="1916" height="863" alt="image" src="https://github.com/user-attachments/assets/bf364730-bbf4-407b-ae76-571ac0892cb8" />
