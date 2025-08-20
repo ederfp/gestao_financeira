@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="public/logo.svg" alt="Logo" width="120" height="120">
   <h1 align="center">Sistema de Gestão Financeira Pessoal</h1>
   <p align="center">
     Transforme sua relação com o dinheiro. Controle suas finanças de forma intuitiva, visual e eficaz.
