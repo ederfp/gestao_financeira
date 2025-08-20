@@ -1,0 +1,411 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+// ==========================================
+// USUÁRIOS E AUTENTICAÇÃO
+// ==========================================
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  password          String
+  name              String
+  avatarUrl         String?
+  phone             String?
+  
+  // Configurações de segurança
+  twoFactorEnabled  Boolean   @default(false)
+  twoFactorSecret   String?
+  emailVerified     Boolean   @default(false)
+  emailVerifiedAt   DateTime?
+  
+  // Configurações de preferências
+  language          String    @default("pt-BR")
+  currency          String    @default("BRL")
+  theme             String    @default("light") // light, dark, auto
+  timezone          String    @default("America/Sao_Paulo")
+  
+  // Configurações de notificações
+  notifyEmail       Boolean   @default(true)
+  notifyPush        Boolean   @default(false)
+  notifyBudgetAlert Boolean   @default(true)
+  notifyGoalProgress Boolean  @default(true)
+  
+  // Timestamps
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  lastLoginAt       DateTime?
+  
+  // Relacionamentos
+  accounts          Account[]
+  categories        Category[]
+  transactions      Transaction[]
+  budgets           Budget[]
+  goals             Goal[]
+  notifications     Notification[]
+  sessions          Session[]
+  passwordResets    PasswordReset[]
+  attachments       Attachment[]
+  
+  @@index([email])
+}
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  userAgent    String?
+  ipAddress    String?
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([sessionToken])
+}
+model PasswordReset {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expires   DateTime
+  used      Boolean  @default(false)
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+  
+  @@index([token])
+  @@index([userId])
+}
+// ==========================================
+// CONTAS E CARTÕES
+// ==========================================
+enum AccountType {
+  CHECKING     // Conta Corrente
+  SAVINGS      // Poupança
+  CREDIT_CARD  // Cartão de Crédito
+  CASH         // Dinheiro
+  INVESTMENT   // Investimento
+  DIGITAL      // Carteira Digital
+  OTHER        // Outros
+}
+model Account {
+  id               String       @id @default(cuid())
+  userId           String
+  name             String
+  type             AccountType
+  balance          Float        @default(0)
+  initialBalance   Float        @default(0)
+  
+  // Informações bancárias (opcionais)
+  bankName         String?
+  bankCode         String?
+  agency           String?
+  accountNumber    String?
+  
+  // Informações de cartão de crédito (se aplicável)
+  creditLimit      Float?
+  closingDay       Int?         // Dia de fechamento da fatura
+  dueDay           Int?         // Dia de vencimento
+  
+  // Visual
+  color            String       @default("#6366f1")
+  icon             String       @default("wallet")
+  
+  // Status
+  isActive         Boolean      @default(true)
+  isDefault        Boolean      @default(false)
+  
+  // Timestamps
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  
+  // Relacionamentos
+  user             User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions     Transaction[]
+  transfersFrom    Transfer[]   @relation("FromAccount")
+  transfersTo      Transfer[]   @relation("ToAccount")
+  
+  @@index([userId])
+  @@index([type])
+}
+// ==========================================
+// CATEGORIAS
+// ==========================================
+enum CategoryType {
+  INCOME   // Receita
+  EXPENSE  // Despesa
+  BOTH     // Ambos
+}
+model Category {
+  id          String       @id @default(cuid())
+  userId      String?      // null para categorias do sistema
+  name        String
+  type        CategoryType
+  
+  // Visual
+  color       String       @default("#6366f1")
+  icon        String       @default("folder")
+  
+  // Hierarquia
+  parentId    String?
+  parent      Category?    @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children    Category[]   @relation("CategoryHierarchy")
+  
+  // Status
+  isSystem    Boolean      @default(false) // Categorias padrão do sistema
+  isActive    Boolean      @default(true)
+  
+  // Timestamps
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  // Relacionamentos
+  user        User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  budgets     Budget[]
+  
+  @@index([userId])
+  @@index([parentId])
+  @@index([type])
+}
+// ==========================================
+// TRANSAÇÕES
+// ==========================================
+enum TransactionType {
+  INCOME    // Receita
+  EXPENSE   // Despesa
+  TRANSFER  // Transferência
+}
+enum RecurrenceType {
+  DAILY
+  WEEKLY
+  BIWEEKLY
+  MONTHLY
+  QUARTERLY
+  SEMIANNUAL
+  ANNUAL
+}
+model Transaction {
+  id              String          @id @default(cuid())
+  userId          String
+  accountId       String
+  categoryId      String?
+  
+  type            TransactionType
+  amount          Float
+  description     String
+  notes           String?
+  
+  // Data da transação
+  date            DateTime
+  
+  // Recorrência
+  isRecurring     Boolean         @default(false)
+  recurrenceType  RecurrenceType?
+  recurrenceEnd   DateTime?
+  parentTransactionId String?     // ID da transação pai (para recorrentes)
+  
+  // Status
+  isPaid          Boolean         @default(true)
+  isConfirmed     Boolean         @default(true)
+  
+  // Tags para busca
+  tags            String?         // Tags separadas por vírgula
+  
+  // Timestamps
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  
+  // Relacionamentos
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account         Account         @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  category        Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  attachments     Attachment[]
+  transfer        Transfer?
+  parentTransaction Transaction?  @relation("RecurringTransactions", fields: [parentTransactionId], references: [id])
+  childTransactions Transaction[] @relation("RecurringTransactions")
+  
+  @@index([userId])
+  @@index([accountId])
+  @@index([categoryId])
+  @@index([date])
+  @@index([type])
+}
+model Transfer {
+  id              String      @id @default(cuid())
+  transactionId   String      @unique
+  fromAccountId   String
+  toAccountId     String
+  
+  // Taxa de conversão (para diferentes moedas)
+  exchangeRate    Float       @default(1)
+  
+  // Relacionamentos
+  transaction     Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  fromAccount     Account     @relation("FromAccount", fields: [fromAccountId], references: [id])
+  toAccount       Account     @relation("ToAccount", fields: [toAccountId], references: [id])
+  
+  @@index([fromAccountId])
+  @@index([toAccountId])
+}
+// ==========================================
+// ANEXOS
+// ==========================================
+model Attachment {
+  id            String      @id @default(cuid())
+  userId        String
+  transactionId String?
+  
+  fileName      String
+  fileUrl       String
+  fileSize      Int
+  mimeType      String
+  
+  // Timestamps
+  createdAt     DateTime    @default(now())
+  
+  // Relacionamentos
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transaction   Transaction? @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([transactionId])
+}
+// ==========================================
+// ORÇAMENTOS
+// ==========================================
+enum BudgetPeriod {
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  ANNUAL
+}
+model Budget {
+  id          String       @id @default(cuid())
+  userId      String
+  categoryId  String
+  
+  name        String
+  amount      Float
+  period      BudgetPeriod @default(MONTHLY)
+  
+  // Período específico do orçamento
+  startDate   DateTime
+  endDate     DateTime
+  
+  // Alertas
+  alertAt     Int          @default(80) // Percentual para alerta
+  
+  // Status
+  isActive    Boolean      @default(true)
+  
+  // Timestamps
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  // Relacionamentos
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category    Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([categoryId])
+  @@index([startDate, endDate])
+}
+// ==========================================
+// METAS FINANCEIRAS
+// ==========================================
+enum GoalStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+model Goal {
+  id              String      @id @default(cuid())
+  userId          String
+  
+  name            String
+  description     String?
+  targetAmount    Float
+  currentAmount   Float       @default(0)
+  
+  // Prazo
+  deadline        DateTime
+  
+  // Visual
+  color           String      @default("#10b981")
+  icon            String      @default("target")
+  
+  // Status
+  status          GoalStatus  @default(ACTIVE)
+  completedAt     DateTime?
+  
+  // Timestamps
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  // Relacionamentos
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contributions   GoalContribution[]
+  
+  @@index([userId])
+  @@index([status])
+}
+model GoalContribution {
+  id          String   @id @default(cuid())
+  goalId      String
+  
+  amount      Float
+  notes       String?
+  
+  // Timestamps
+  createdAt   DateTime @default(now())
+  
+  // Relacionamentos
+  goal        Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  
+  @@index([goalId])
+}
+// ==========================================
+// NOTIFICAÇÕES
+// ==========================================
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+  BUDGET_ALERT
+  GOAL_PROGRESS
+  BILL_REMINDER
+}
+model Notification {
+  id          String           @id @default(cuid())
+  userId      String
+  
+  type        NotificationType
+  title       String
+  message     String
+  data        String?          // JSON com dados adicionais
+  
+  // Status
+  isRead      Boolean          @default(false)
+  readAt      DateTime?
+  
+  // Timestamps
+  createdAt   DateTime         @default(now())
+  
+  // Relacionamentos
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([isRead])
+  @@index([createdAt])
+}
