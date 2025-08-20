@@ -1,141 +1,268 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+<div align="center">
+  <img src="public/logo.svg" alt="Logo" width="120" height="120">
+  <h1 align="center">Sistema de Gestão Financeira Pessoal</h1>
+  <p align="center">
+    Transforme sua relação com o dinheiro. Controle suas finanças de forma intuitiva, visual e eficaz.
+    <br />
+    <a href="#sobre-o-projeto"><strong>Explore a documentação »</strong></a>
+    <br />
+    <br />
+    <a href="#">Ver Demo</a>
+    ·
+    <a href="https://github.com/usuario/repositorio/issues">Reportar Bug</a>
+    ·
+    <a href="https://github.com/usuario/repositorio/issues">Solicitar Feature</a>
+  </p>
+</div>
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+<div align="center">
 
-## ✨ Technology Stack
+![Next.js](https://img.shields.io/badge/Next.js-15+-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-3-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 
-This scaffold provides a robust foundation built with:
-
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
-
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
-
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
-
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
-
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
-
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
-
-## 🚀 Quick Start
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
-
-## 🤖 Powered by Z.ai
-
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
-
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
-
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
-
-## 📁 Project Structure
-
-```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
-```
-
-## 🎨 Available Features & Components
-
-This scaffold includes a comprehensive set of modern web development tools:
-
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
-
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
-
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
-
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
-
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
-
-## 🤝 Get Started with Z.ai
-
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+</div>
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+## Tabela de Conteúdos
+
+- [Sobre o Projeto](#sobre-o-projeto)
+- [Funcionalidades](#funcionalidades)
+- [Roadmap](#roadmap)
+- [Stack Tecnológica](#stack-tecnológica)
+- [Fluxo do Usuário](#fluxo-do-usuário)
+- [Esquema do Banco de Dados](#esquema-do-banco-de-dados)
+- [Começando](#começando)
+- [Licença](#licença)
+- [Contato](#contato)
+
+---
+
+## Sobre o Projeto
+
+O **Sistema Web de Gestão Financeira Pessoal** é uma plataforma digital projetada para capacitar os usuários a gerenciar suas finanças de forma centralizada, intuitiva e eficiente. O sistema oferece um conjunto robusto de ferramentas para controle de receitas e despesas, planejamento orçamentário, análise de padrões de gastos e acompanhamento de metas financeiras.
+
+**Nossa Proposta de Valor:**
+> "Transforme sua relação com o dinheiro através de uma plataforma que torna o controle financeiro simples, visual e eficaz, ajudando você a tomar decisões mais inteligentes e alcançar seus objetivos financeiros."
+
+### Objetivos
+
+- **Simplificar** o controle financeiro com uma interface amigável.
+- **Fornecer insights** valiosos sobre padrões de gastos.
+- **Auxiliar** no alcance de metas financeiras através de planejamento.
+- **Promover** a educação financeira com dicas e recursos.
+
+---
+
+## Funcionalidades
+
+### Essenciais (MVP)
+
+- **🔐 Autenticação e Perfil:** Cadastro seguro, login e gerenciamento de perfil.
+- **📊 Dashboard Principal:** Visão geral do saldo, resumo mensal e gráficos financeiros.
+- **🏦 Gestão de Contas:** Cadastro de contas bancárias, cartões e carteiras digitais.
+- **💸 Lançamentos Financeiros:** Registro detalhado de receitas e despesas, com anexos e recorrências.
+- **🏷️ Categorias:** Sistema de categorias pré-definidas e personalizáveis.
+- **💰 Orçamento:** Definição de orçamentos mensais por categoria com alertas de gastos.
+- **📈 Relatórios Básicos:** Extratos detalhados e gráficos de despesas para exportação.
+
+---
+
+## Roadmap
+
+### Fase 2 (Intermediário)
+
+- **🎯 Metas Financeiras:** Criação e acompanhamento de metas de economia.
+- **📅 Planejamento Financeiro:** Projeção de fluxo de caixa e simuladores.
+- **🧠 Análise Avançada:** Insights automáticos e comparativos de gastos.
+- **🔗 Integração Bancária:** Sincronização via Open Banking.
+
+### Fase 3 (Avançado)
+
+- **💹 Investimentos:** Acompanhamento de carteira e rentabilidade.
+- **👨‍👩‍👧‍👦 Compartilhamento Familiar:** Contas e orçamentos compartilhados.
+- **🎓 Educação Financeira:** Conteúdo personalizado e gamificação.
+- **🤖 Assistente Virtual:** Chatbot com análises preditivas e recomendações.
+
+---
+
+## Stack Tecnológica
+
+Este projeto foi construído utilizando as mais modernas tecnologias para desenvolvimento web:
+
+- **Frontend:**
+  - [Next.js 15+](https://nextjs.org/) (App Router)
+  - [React 19](https://react.dev/)
+  - [Tailwind CSS 4](https://tailwindcss.com/)
+  - [Shadcn/UI](https://ui.shadcn.com/)
+  - [Framer Motion](https://www.framer.com/motion/)
+- **Backend:**
+  - [Node.js](https://nodejs.org/)
+  - [TypeScript](https://www.typescriptlang.org/)
+- **Banco de Dados:**
+  - [Prisma ORM](https://www.prisma.io/)
+  - [SQLite](https://www.sqlite.org/index.html)
+- **Validação:**
+  - [Zod](https://zod.dev/)
+  - [React Hook Form](https://react-hook-form.com/)
+
+---
+
+## Fluxo do Usuário
+
+O fluxograma abaixo detalha a jornada do usuário dentro do sistema, desde a autenticação até a gestão de suas finanças.
+
+```mermaid
+flowchart TD
+Start([Usuário Acessa Sistema]) --> AuthCheck{Usuário<br/>Autenticado?}
+
+%% Fluxo de Autenticação
+AuthCheck -->|Não| LoginPage[Tela de Login]
+AuthCheck -->|Sim| Dashboard[Dashboard Principal]
+
+LoginPage --> LoginChoice{Escolha}
+LoginChoice -->|Login| LoginForm[Formulário de Login]
+LoginChoice -->|Cadastro| SignupForm[Formulário de Cadastro]
+LoginChoice -->|Esqueci Senha| PasswordReset[Recuperação de Senha]
+
+LoginForm --> Auth2FA{2FA Ativado?}
+Auth2FA -->|Sim| TwoFactor[Verificação 2FA]
+Auth2FA -->|Não| Dashboard
+TwoFactor --> Dashboard
+
+SignupForm --> EmailVerify[Verificação de Email]
+EmailVerify --> Onboarding[Fluxo de Onboarding]
+
+%% Fluxo de Onboarding
+Onboarding --> Profile[Configuração de Perfil]
+Profile --> FirstAccount[Adicionar Primeira Conta]
+FirstAccount --> AccountType{Tipo de Conta}
+AccountType -->|Banco| BankAccount[Conta Bancária]
+AccountType -->|Cartão| CreditCard[Cartão de Crédito]
+AccountType -->|Digital| DigitalWallet[Carteira Digital]
+
+BankAccount --> FirstTransaction[Primeiro Lançamento]
+CreditCard --> FirstTransaction
+DigitalWallet --> FirstTransaction
+
+FirstTransaction --> Tour[Tour Guiado]
+Tour --> Dashboard
+
+%% Dashboard e Navegação Principal
+Dashboard --> MainMenu{Menu Principal}
+
+MainMenu -->|Contas| AccountsManagement[Gestão de Contas]
+MainMenu -->|Lançamentos| Transactions[Lançamentos]
+MainMenu -->|Orçamento| Budget[Orçamento]
+MainMenu -->|Relatórios| Reports[Relatórios]
+MainMenu -->|Metas| Goals[Metas Financeiras]
+MainMenu -->|Perfil| UserProfile[Perfil do Usuário]
+
+classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+classDef process fill:#fff3e0,stroke:#e65100,stroke-width:2px
+classDef decision fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+class Start,Dashboard startEnd
+class LoginPage,SignupForm process
+class AuthCheck,LoginChoice decision
+```
+
+---
+
+## Esquema do Banco de Dados
+
+O esquema do banco de dados foi modelado com Prisma e define a estrutura central para armazenamento de todas as informações do usuário de forma segura e relacional.
+
+```prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+provider = "prisma-client-js"
+}
+datasource db {
+provider = "sqlite"
+url = env("DATABASE_URL")
+}
+// ==========================================
+// USUÁRIOS E AUTENTICAÇÃO
+// ==========================================
+model User {
+id String @id @default(cuid())
+email String @unique
+password String
+name String
+avatarUrl String?
+phone String?
+
+// Configurações de segurança
+twoFactorEnabled Boolean @default(false)
+twoFactorSecret String?
+emailVerified Boolean @default(false)
+emailVerifiedAt DateTime?
+
+// Configurações de preferências
+language String @default("pt-BR")
+currency String @default("BRL")
+theme String @default("light") // light, dark, auto
+timezone String @default("America/Sao_Paulo")
+
+// Relacionamentos
+accounts Account[]
+categories Category[]
+transactions Transaction[]
+budgets Budget[]
+goals Goal[]
+}
+
+// ... (demais modelos)
+```
+
+---
+
+## Começando
+
+Para executar uma cópia local do projeto, siga estes passos simples.
+
+### Pré-requisitos
+
+Certifique-se de ter o Node.js e o npm instalados em sua máquina.
+
+- **npm**
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Instalação
+
+1. Clone o repositório
+   ```sh
+   git clone https://github.com/usuario/repositorio.git
+   ```
+2. Navegue até o diretório do projeto
+   ```sh
+   cd gestao_financeira_template
+   ```
+3. Instale os pacotes NPM
+   ```sh
+   npm install
+   ```
+4. Configure suas variáveis de ambiente
+   - Crie um arquivo `.env` na raiz do projeto.
+   - Adicione a seguinte variável, apontando para o arquivo do banco de dados:
+     ```
+     DATABASE_URL="file:./db/custom.db"
+     ```
+5. Execute as migrações do banco de dados
+   ```sh
+   npm run db:migrate
+   ```
+6. Inicie o servidor de desenvolvimento
+   ```sh
+   npm run dev
+   ```
+
+O servidor estará disponível em `http://localhost:3000`.
+
+---
